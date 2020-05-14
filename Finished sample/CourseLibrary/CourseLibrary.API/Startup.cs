@@ -58,8 +58,17 @@ namespace CourseLibrary.API
 
                     // if there are modelstate errors & all keys were correctly
                     // found/parsed we're dealing with validation errors
-                    if ((context.ModelState.ErrorCount > 0) &&
-                        (actionExecutingContext?.ActionArguments.Count == context.ActionDescriptor.Parameters.Count))
+                    //
+                    // if the context couldn't be cast to an ActionExecutingContext
+                    // because it's a ControllerContext, we're dealing with an issue 
+                    // that happened after the initial input was correctly parsed.  
+                    // This happens, for example, when manually validating an object inside
+                    // of a controller action.  That means that by then all keys
+                    // WERE correctly found and parsed.  In that case, we're
+                    // thus also dealing with a validation error.
+                    if (context.ModelState.ErrorCount > 0 &&
+                        (context is ControllerContext ||
+                         actionExecutingContext?.ActionArguments.Count == context.ActionDescriptor.Parameters.Count))
                     {
                         problemDetails.Type = "https://courselibrary.com/modelvalidationproblem";
                         problemDetails.Status = StatusCodes.Status422UnprocessableEntity;
