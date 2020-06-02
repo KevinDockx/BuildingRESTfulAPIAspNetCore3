@@ -16,7 +16,7 @@ namespace CourseLibrary.API.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // seed the database with dummy data
+             // seed the database with dummy data
             modelBuilder.Entity<Author>().HasData(
                 new Author()
                 {
@@ -73,7 +73,47 @@ namespace CourseLibrary.API.DbContexts
                     LastName = "Crow Ridley",
                     DateOfBirth = new DateTime(1721, 10, 11),
                     MainCategory = "Rum"
-                }
+                },
+                new Author()
+                {  
+                    Id = Guid.Parse("71838f8b-6ab3-4539-9e67-4e77b8ede1c0"),
+                    FirstName = "Huxford",
+                    LastName = "The Hawk Morris",
+                    DateOfBirth = new DateTime(1969, 8, 11),
+                    MainCategory = "Maps" 
+                },
+                 new Author()
+                 {
+                     Id = Guid.Parse("119f9ccb-149d-4d3c-ad4f-40100f38e918"),
+                     FirstName = "Dwennon",
+                     LastName = "Rigger Quye",
+                     DateOfBirth = new DateTime(1972, 1, 8),
+                     MainCategory = "Maps"
+                 },
+                 new Author()
+                 {
+                     Id = Guid.Parse("28c1db41-f104-46e6-8943-d31c0291e0e3"),
+                     FirstName = "Rushford",
+                     LastName = "Subtle Asema",
+                     DateOfBirth = new DateTime(1982, 5, 5),
+                     MainCategory = "Rum"
+                 },
+                 new Author()
+                 {
+                     Id = Guid.Parse("d94a64c2-2e8f-4162-9976-0ffe03d30767"),
+                     FirstName = "Hagley",
+                     LastName = "Imposter Grendel",
+                     DateOfBirth = new DateTime(1976, 7, 12),
+                     MainCategory = "Singing"
+                 },
+                 new Author()
+                 {
+                     Id = Guid.Parse("380c2c6b-0d1c-4b82-9d83-3cf635a3e62b"),
+                     FirstName = "Mabel",
+                     LastName = "Barnacle Grendel",
+                     DateOfBirth = new DateTime(1977, 2, 8),
+                     MainCategory = "Maps"
+                 } 
                 );
 
             modelBuilder.Entity<Course>().HasData(
